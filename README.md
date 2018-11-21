@@ -1,4 +1,4 @@
-# MERN-Social-App
+# Mini-Social-App
 
 ![status in_progress](https://img.shields.io/badge/status-in_progress-brightgreen.svg)
 
