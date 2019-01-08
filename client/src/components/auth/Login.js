@@ -1,10 +1,73 @@
 import React, { Component } from 'react';
 
 class Login extends Component {
+    constructor () {
+        super();
+        this.state = {
+            email: '',
+            password: '',
+            errors: {}
+        }
+
+        // Bind events
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    // Create onChange form event
+    onChange(e) {
+        this.setState( { [e.target.name]: e.target.value } );
+    }
+
+    // Create onSubmit form event
+    onSubmit(e) {
+        // prevent default form submit behaviour
+        e.preventDefault();
+
+        const user = {
+            email: this.state.email,
+            password: this.state.password,
+        }
+        console.log(user);
+    }
+
     render() {
         return (
-            <div>
-                <h1>Hello router Login</h1>
+            <div className="login">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-8 m-auto">
+                            <h1 className="display-4 text-center">Log In</h1>
+                            <p className="lead text-center">Sign in to your DevConnector account</p>
+                            <form onSubmit={this.onSubmit}>
+                                <div className="form-group">
+                                    <input 
+                                    type="email" 
+                                    className="form-control form-control-lg" 
+                                    placeholder="Email Address" 
+                                    name="email" 
+                                    value={this.state.email}
+                                    onChange={this.onChange}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <input 
+                                    type="password" 
+                                    className="form-control form-control-lg" 
+                                    placeholder="Password" 
+                                    name="password" 
+                                    value={this.state.password} 
+                                    onChange={this.onChange}
+                                    />
+                                </div>
+                                    <input 
+                                    type="submit" 
+                                    className="btn btn-info btn-block mt-4"
+                                    />
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
