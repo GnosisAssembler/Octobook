@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// Import Link from react router to link the html elements with the existing component routes
+import { Link } from 'react-router-dom';
 
 class Landing extends Component {
     render() {
@@ -12,8 +14,8 @@ class Landing extends Component {
                                 </h1>
                                 <p className="lead"> Connect with other developers via our social app</p>
                                 <hr />
-                                <a href="register.html" className="btn btn-lg btn-info mr-2">Sign Up</a>
-                                <a href="login.html" className="btn btn-lg btn-light">Login</a>
+                                <Link to="/register" className="btn btn-lg btn-info mr-2">Sign Up</Link>
+                                <Link to="/login" className="btn btn-lg btn-light">Login</Link>
                             </div>
                         </div>
                     </div>
