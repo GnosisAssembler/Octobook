@@ -1,8 +1,7 @@
+import { GET_ERRORS } from '../actions/types';
+
 // Initial state of the reducer
-const initialState = {
-    isAuthedicated: false,
-    user: {}
-}
+const initialState = {};
 
 /*
     Arguments:
@@ -12,6 +11,8 @@ const initialState = {
 */
 export default function(state = initialState, action) {
     switch(action.type) {
+        case GET_ERRORS:
+            return action.payload
         default:
             return state;
     }

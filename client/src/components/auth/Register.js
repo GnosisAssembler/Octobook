@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// Import axios
-import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 // Import classnames for conditional class rendering
 import classnames from 'classnames';
 // Import connect for connecting redux to this component
@@ -41,24 +40,21 @@ class Register extends Component {
             password2: this.state.password2
         }
 
-        this.props.registerUser(newUser);
-        
-        // Make request to back end api whish is returning a json-like user
-        /* axios.post('/api/users/register', newUser)
-            .then(res => console.log(res.data))
-            .catch(err => this.setState({errors: err.response.data}));
-        */
+        this.props.registerUser(newUser, this.props.history);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.errors) {
+            this.setState( { errors: nextProps.errors} );
+        }
     }
 
     render() {
         // Get errors from the state, in order to use these errors for conditional class rendering
         const { errors } = this.state;
 
-        const { user } = this.props.auth;
-
         return (
             <div className="register">
-            { user ? user.name : null }
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
@@ -132,11 +128,13 @@ class Register extends Component {
 
 Register.propTypes = {
     registerUser: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-    auth: state.auth
+    auth: state.auth,
+    errors: state.errors
 });
 
-export default connect(mapStateToProps, { registerUser })(Register);
+export default connect(mapStateToProps, { registerUser })(withRouter(Register));
