@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 // Import Router
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+import setAuthToken from './utils/setAuthToken';
+import { setCurrentUser } from './actions/authActions';
 // Import Provider from redux, which wraps all the return content in the main App
 import { Provider } from 'react-redux';
 // Import store for Redux' Provider
@@ -13,6 +16,16 @@ import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+
+// Check for token
+if(localStorage.jwtToken) {
+  // Set auth token header auth
+  setAuthToken(localStorage.jwtToken);
+  // Decode token and get user info and exp
+  const decoded = jwt_decode(localStorage.jwtToken);
+  // Set user and isAuthedicated
+  store.dispatch(setCurrentUser(decoded));
+}
 
 class App extends Component {
   render() {
