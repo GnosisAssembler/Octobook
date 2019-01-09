@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 // Import axios
 import axios from 'axios';
 // Import classnames for conditional class rendering
 import classnames from 'classnames';
+// Import connect for connecting redux to this component
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions/authActions';
 
 class Register extends Component {
     constructor () {
@@ -36,19 +40,25 @@ class Register extends Component {
             password: this.state.password,
             password2: this.state.password2
         }
+
+        this.props.registerUser(newUser);
         
         // Make request to back end api whish is returning a json-like user
-        axios.post('/api/users/register', newUser)
+        /* axios.post('/api/users/register', newUser)
             .then(res => console.log(res.data))
             .catch(err => this.setState({errors: err.response.data}));
+        */
     }
 
     render() {
         // Get errors from the state, in order to use these errors for conditional class rendering
         const { errors } = this.state;
 
+        const { user } = this.props.auth;
+
         return (
             <div className="register">
+            { user ? user.name : null }
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
@@ -120,4 +130,13 @@ class Register extends Component {
     }
 }
 
-export default Register;
+Register.propTypes = {
+    registerUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+    auth: state.auth
+});
+
+export default connect(mapStateToProps, { registerUser })(Register);
