@@ -3,7 +3,6 @@ import { SET_CURRENT_USER } from './types';
 import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
-import { set } from 'mongoose';
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
