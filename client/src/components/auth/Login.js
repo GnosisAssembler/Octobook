@@ -23,6 +23,12 @@ class Login extends Component {
         this.setState( { [e.target.name]: e.target.value } );
     }
 
+    componentDidMount() {
+        if(this.props.auth.isAuthenticated) {
+            this.props.history.push('/dashboard');
+        }
+    }
+
     // Create onSubmit form event
     onSubmit(e) {
         // prevent default form submit behaviour
@@ -38,8 +44,8 @@ class Login extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        // Check if the user is authedicated and redirect
-        if(nextProps.auth.isAuthedicated) {
+        // Check if the user is Authenticated and redirect
+        if(nextProps.auth.isAuthenticated) {
             this.props.history.push('/dashboard');
         }
 
