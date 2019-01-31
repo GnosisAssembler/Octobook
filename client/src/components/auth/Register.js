@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-// Import classnames for conditional class rendering
-import classnames from 'classnames';
 // Import connect for connecting redux to this component
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';

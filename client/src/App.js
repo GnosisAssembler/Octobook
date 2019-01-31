@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authActions';
+import { clearCurrentProfile } from './actions/profileActions';
 // Import Provider from redux, which wraps all the return content in the main App
 import { Provider } from 'react-redux';
 // Import store for Redux' Provider
@@ -32,7 +33,7 @@ if(localStorage.jwtToken) {
   if(decoded.exp < currentTime) {
     // Logout the user
     store.dispatch(logoutUser());
-    // TODO: Clear current profile
+    store.dispatch(clearCurrentProfile());
     // Redirect to login
     window.location.href = '/login';
   }
@@ -50,6 +51,7 @@ class App extends Component {
               {/* Create routes for register and login */}
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/dashboard" component={Dashboard} />
             </div>
             <Footer />
           </div>
