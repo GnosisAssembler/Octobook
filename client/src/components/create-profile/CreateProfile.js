@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TextFieldGroup from '../common/TextFieldGroup';
+import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
+import InputGroup from '../common/InputGroup';
+import SelectListGroup from '../common/SelectListGroup';
 
 class CreateProfile extends Component {
     constructor(props) {
@@ -23,9 +26,23 @@ class CreateProfile extends Component {
             instagram: '', 
             errors: {}
         }
+
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    onSubmit(e) {
+        e.preventDefault();
+
+        console.log('submit');
+    }
+
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
     }
 
     render() {
+        const { errors } = this.state;
         return (
             <div className="create-profile">
                 <div className="container">
@@ -36,6 +53,17 @@ class CreateProfile extends Component {
                                 Let's get some information to make your profile stand out
                             </p>
                             <small className="d-block pb-3">* = required fields</small>
+                            <form onSubmit={this.onSubmit}>
+                                <TextFieldGroup
+                                    placeholder="* Profile Handle"
+                                    name="handle"
+                                    value={this.state.handle}
+                                    onChange={this.onChange}
+                                    error={errors.handle}
+                                    info="A unique handle for your profile URL. Your full name, company name,
+                                    nickname, etc"
+                                />
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -54,4 +82,4 @@ const mapStateToProps = state => ({
     errors: state.errors
 });
 
-export default connect(null)(CreateProfile);
+export default connect(mapStateToProps)(CreateProfile);
