@@ -26,6 +26,9 @@ import Posts from './components/post/Posts';
 import Post from './components/post/Post';
 import NotFound from './components/not-found/NotFound';
 
+// TEST CHAT COMPONENT
+import Chat from './components/chat/Chat';
+
 import './App.css';
 
 // Check for token
@@ -100,6 +103,9 @@ class App extends Component {
                 <PrivateRoute exact path="/post/:id" component={Post} />
               </Switch>
               <Route exact path="/not-found" component={NotFound} />
+              <Switch>
+                <PrivateRoute exact path="/chat" component={Chat} />
+              </Switch>
             </div>
             <Footer />
           </div>
