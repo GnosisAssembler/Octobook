@@ -1,15 +1,87 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Cabin:400,500,600');
+
+/* Globals */
 img {
   width: 100%;
 }
 
+.btn-info {
+  background-color: #02BB71;
+  color: white;
+}
+
+.btn-info:hover {
+  background-color: #017E4C;
+}
+
+.btn-light:hover {
+  color: #02BB71;
+}
+
+.btn-danger {
+  background-color: orange;
+  border: orange;
+  color: white;
+}
+
+.register, .login, .dashboard, .create-profile, .edit-profile,
+  .add-education, .add-experience, .profile{
+  font-family: 'Cabin', sans-serif;
+}
+
+.profiles h1, .profile h1, .dashboard h1, .create-profile h1,
+.add-education h1, .add-experience h1 {
+  font-family: 'Lobster', cursive;
+}
+
+/* Navbar */
+/*--------------------------------------------*/
+.topmenu {
+  background-color: #031427;
+}
+
+.navbar-dark .navbar-brand {
+  color: #02BB71;
+  font-family: 'Lobster', cursive;
+}
+
+.navbar-dark .navbar-brand:hover {
+  color: orange;
+}
+
+.navbar-nav .nav-item .nav-link {
+  color: white;
+  font-family: 'Cabin', sans-serif;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  color: #02BB71;
+}
+
+/* Footer */
+/*--------------------------------------------*/
+.footer {
+  background-color: rgb(3, 20, 39);
+  color: grey;
+}
+
+/* Landing Page */
+/*--------------------------------------------*/
 .landing {
   position: relative;
-  background: url('./img/showcase.jpg') no-repeat;
+  background: url('./img/octo.jpg') no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
   margin-top: -24px;
   margin-bottom: -50px;
+  font-family: 'Cabin', sans-serif;
+}
+
+.landing h1 {
+  font-family: 'Lobster', cursive;
 }
 
 .landing-inner {
@@ -23,6 +95,17 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+/* Profile page */
+/*--------------------------------------------*/
+.bg-info {
+  background: url('./img/prof.png') no-repeat !important;
+  box-shadow: inset 0 0 0 1000px rgba(3, 20, 39, 0.8);
+}
+
+.profile h3, .text-info h3{
+  color: #02BB71 !important;
 }
 
 .card-form {

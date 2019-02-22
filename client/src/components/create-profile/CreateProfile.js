@@ -151,7 +151,7 @@ class CreateProfile extends Component {
                   value={this.state.handle}
                   onChange={this.onChange}
                   error={errors.handle}
-                  info="A unique handle for your profile URL. Your full name, company name, nickname"
+                  info="A unique handle for your profile URL"
                 />
                 <SelectListGroup
                   placeholder="Status"
@@ -184,7 +184,7 @@ class CreateProfile extends Component {
                   value={this.state.location}
                   onChange={this.onChange}
                   error={errors.location}
-                  info="City or city & state suggested (eg. Boston, MA)"
+                  info="City and country suggested (eg. Athens, Greece)"
                 />
                 <TextFieldGroup
                   placeholder="* Skills"
@@ -193,7 +193,7 @@ class CreateProfile extends Component {
                   onChange={this.onChange}
                   error={errors.skills}
                   info="Please use comma separated values (eg.
-                    HTML,CSS,JavaScript,PHP"
+                    Javascript, C++, Python)"
                 />
                 <TextFieldGroup
                   placeholder="Github Username"
