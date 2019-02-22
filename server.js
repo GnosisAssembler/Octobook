@@ -47,7 +47,9 @@ if(process.env.NODE_ENV === 'production') {
   });
 }
 
-// Configure port
-const port = process.env.PORT || 5000;
+console.log('Express server connected...');
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+// Export app for ws-server
+module.exports = app;
+
+

@@ -8,7 +8,8 @@
     "client": "cd client && npm start",
     "start": "node server.js",
     "server": "nodemon server.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "ws-server": "nodemon ws-server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run ws-server\" ",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Panos Karypiadis",
@@ -22,7 +23,8 @@
     "mongoose": "^5.0.12",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
-    "validator": "^9.4.1"
+    "validator": "^9.4.1",
+    "ws": "^6.1.4"
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
