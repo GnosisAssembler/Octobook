@@ -32,7 +32,7 @@ img {
 }
 
 .profiles h1, .profile h1, .dashboard h1, .create-profile h1,
-.add-education h1, .add-experience h1 {
+.add-education h1, .add-experience h1, .chat h2 {
   font-family: 'Lobster', cursive;
 }
 
@@ -119,4 +119,31 @@ img {
 
 .form-control::placeholder {
   color: #bbb !important;
+}
+
+/* Chatroom */
+/*--------------------------------------------*/
+.chat h3 {
+  color: red;
+}
+
+.chat input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.chat input[type=submit] {
+  width: 100%;
+  background-color: #02BB71 ;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }

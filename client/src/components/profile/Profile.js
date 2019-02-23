@@ -12,13 +12,13 @@ import { getProfileByHandle } from '../../actions/profileActions';
 class Profile extends Component {
     componentDidMount() {
         if (this.props.match.params.handle) {
-        this.props.getProfileByHandle(this.props.match.params.handle);
+            this.props.getProfileByHandle(this.props.match.params.handle);
         }
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.profile.profile === null && this.props.profile.loading) {
-        this.props.history.push('/not-found');
+            this.props.history.push('/not-found');
         }
     }
 
@@ -27,7 +27,7 @@ class Profile extends Component {
         let profileContent;
 
         if (profile === null || loading) {
-        profileContent = <Spinner />;
+            profileContent = <Spinner />;
         } else {
         profileContent = (
             <div>
