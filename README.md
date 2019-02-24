@@ -59,7 +59,7 @@ __NOTE: In order to run the app, you need a Local MongoDB installation or a Remo
 
 Create a new [Github Auth App](https://github.com/settings/applications/new)
 
-Open _/client/src/components/profile/ProfileGithub.js_ and replace *"clientId"* and *"clientSecret"* with your own. 
+Open _/client/src/components/profile/ProfileGithub.js_ and replace __"clientId"__ and __"clientSecret"__ with your own. 
 
 ```javascript
 import React, { Component } from 'react';
@@ -80,7 +80,7 @@ class ProfileGithub extends Component {
     ...
 ```
 
-Also you must go in the newly created app's [dashboard](https://github.com/settings/developers) and replace "Homepage URL" and "Authorization callback URL" either with _http://localhost:3000_ if you are going to run the app locally, or with your heroku link if you are going to deploy the app to heroku. 
+Also you must go in the newly created app's [dashboard](https://github.com/settings/developers) and replace __"Homepage URL"__ and __"Authorization callback URL"__ either with _http://localhost:3000_ if you are going to run the app locally, or with your __heroku link__ if you are going to deploy the app to heroku. 
 
 ![git](img-samples/git.png?raw=true)
 
@@ -98,20 +98,20 @@ npm run heroku-postbuild | Heroku based script for creating the production build
 
 ## Remote Database
 
-Create an account on [MLab](https://mlab.com), login into your account and on the dashboard screen, create a new Database (first button on the right "Create new"). 
+Create an account on [MLab](https://mlab.com), login into your account and on the dashboard screen, create a new Database (first button on the right __"Create new"__). 
 
 ![mongo-1](img-samples/mongo-1.png?raw=true)
 
-Choose a cloud provider. For now lets go with *Amazon Web Services*. Choose *"SandBox"*, which is the free plan and press ok. You will need to wait 5-10 secs for the database to be created. 
+Choose a cloud provider. For now lets go with __Amazon Web Services__. Choose __"SandBox"__, which is the free plan and press ok. You will need to wait 5-10 secs for the database to be created. 
 
 ![mongo-2](img-samples/mongo-2.png?raw=true)
 
-Last step is to create a *user* for the database. 
+Last step is to create a __user__ for the database. 
 
 ![mongo-3](img-samples/mongo-3.png?raw=true)
 
-After creating a user, copy the *"To connect using a driver via the standard MongoDB URI"* link (something like this, 
-_mongodb://<dbuser>:<dbpassword>@ds139435.mlab.com:39435/network_), replacing *"\<dbuser\>"* and *"\<dbpassword\>"* with your current user's credentials, _into /config/keys_dev.js_.
+After creating a user, copy the __"To connect using a driver via the standard MongoDB URI"__ link (something like this, 
+_mongodb://<dbuser>:<dbpassword>@ds139435.mlab.com:39435/network_), replacing __"\<dbuser\>"__ and __"\<dbpassword\>"__ with your current user's credentials, _into /config/keys_dev.js_.
 
 ![mongo-4](img-samples/mongo-4.png?raw=true)
 
@@ -144,7 +144,7 @@ Create a new database
 use minisocialapp
 ```
 
-Go to _/config/keys_dev.js_, comment out *mongoURI* and *secretOrKey* and uncomment the first line , replacing *"mern social app"* with the name of your own database.
+Go to _/config/keys_dev.js_, comment out __mongoURI__ and __secretOrKey__ and uncomment the first line , replacing __"mern social app"__ with the name of your own database.
 ```javascript
 module.exports = {
     mongoURI: 'mongodb://localhost/minisocialapp',
@@ -162,9 +162,9 @@ npm run dev
 
 Log in into your heroku account and create a new application in the heroku dashboard.
 
-Go to *"Deploy"* section at the bottom and follow the instructions, in order to upload your app to heroku using *heroku-cli*. 
+Go to __"Deploy"__ section at the bottom and follow the instructions, in order to upload your app to heroku using __heroku-cli__. 
 
-At *"Settings"* section , under the *"Config Vars"* area, add two global variables for the database, using your MLab *mongo uri* and your *secret* (_/config/keys_dev.js_):
+At __"Settings"__ section , under the __"Config Vars"__ area, add two global variables for the database, using your MLab __mongo uri__ and your __secret__ (_/config/keys_dev.js_):
 ```
 MONGO_URI : mongodb://pankaryp3:pankaryp3@ds131765.mlab.com:31765/mini-social-app
 SECRET_OR_KEY : secret
@@ -194,11 +194,11 @@ Users can register and login with their email adress.
 
 ### Gravatar
 
-The application is using Gravatars for users' profile picture. That's why users are encouraged to use a gravatar email.
+The application is using [Gravatar](https://el.gravatar.com/) for users' profile picture. That's why users are encouraged to use a gravatar email.
 
 ### Authedication
 
-Authedication is being achieved with *Json Web Tokens* using [Passport](http://www.passportjs.org/). All users have private access to their profile, where they can see and change information that other users can't. There are also public places that all users can see, like "Developers" and "Chat". 
+Authedication is being achieved with __Json Web Tokens Strategy__ using [Passport](http://www.passportjs.org/). All users have private access to their profile, where they can see and change information that other users can't. There are also public places that all users can see, like "Developers" and "Chat". 
 
 ### Error Handling
 
@@ -212,7 +212,7 @@ The passwords are being hashed with a 10 digit salt, using [BCrypt](https://gith
 
 ## Public Users
 
-All the users that have signed up to the network can be seen publicly under the *"Developers"* link.
+All the users that have signed up to the network can be seen publicly under the "Developers" link.
 
 ![users](img-samples/users.png?raw=true)
 
