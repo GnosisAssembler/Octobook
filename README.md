@@ -58,6 +58,8 @@ Start the development server
 npm run dev
 ```
 
+_WARNING: Dont forget to disable the Ad Blocker on ur web browser, so that you dont get the error "Failed to fetch data", for the Latest github repos functionality._
+
 __NOTE: In order to run the app with your own server and github auth app, you need a Local MongoDB installation or a Remote Database (which is a quicker solution), for example at [MLab](https://mlab.com). Also you will need an Auth Github App registered for the "latest repositories functionality". We will cover all that below.__
 
 ## Github Auth App
