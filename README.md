@@ -41,7 +41,7 @@ This repository is an attempt to make a full stack application with an interacti
 
 # Getting Started
 
-You can view a live demo of the application on [Heroku here](https://heroku.com)!
+You can view a live demo of the application on [Heroku here](https://octobook.herokuapp.com/)!
 
 If you want to set up your own development enviroment, just clone this repository:
 ```bash
