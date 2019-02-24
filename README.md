@@ -9,19 +9,20 @@
 * [Description](#description)
 * [Getting Started](#getting-started)
     * [Available Scripts](#available-scripts)
+    * [Github Auth App](#github-auth-app)
     * [Remote Database](#remote-database)
     * [Local Database](#local-database)
     * [Heroku Deployment](#heroku-deployment)
     * [Production Build](#production-build)
 * [Application Overview](#application-overview)
     * [Register-Login](#register-login)
+        * [Gravatar](#gravatar)
         * [Authedication](#authedication)
         * [Error Handling](#error-handling)
         * [Password hashing](#password-hashing)
     * [Public Users](#public-users)
     * [Dashboard](#dashboard)
         * [Profile](#profile)
-            * [Gravatar](#gravatar)
             * [Github API](#github-api)
         * [Edit Profile](#edit-profile)
         * [Add Experience](#add-experience)
@@ -31,20 +32,6 @@
         * [Likes-Comments](#likes-comments)
 * [Technologies Used](#technologies-used)
     * [Folder Structure](#folder-structure)
-    * [Back End](#back-end)
-        * [Config](#config)
-        * [REST Api](#rest-api)
-        * [Mongoose Models](#mongoose-models)
-        * [Authedication - JWT](#authedication-jwt)
-        * [Validation](#validation)
-        * [Hashing](#hashing)
-        * [Websockets](#websockets)
-    * [Front End](#front-end)
-        * [Bootstrap](#bootstrap)
-        * [React](#react)
-            * [Components](#components)
-            * [State Management - Redux](#state-management-redux)
-        * [Custom Styles](#custom-styles)
 * [Contribution](#contribution)
 * [License](#license)
 
@@ -63,10 +50,39 @@ git clone https://github.com/pankaryp/Mini-social-app.git
 Install server and client dependencies
 ```bash
 cd Mini-social-app
-npm install && npm client-install
+npm install && npm run client-install
 ```
 
-__NOTE: In order to run the app, you need a Local MongoDB installation or a Remote Database (which is a quicker solution), for example at MLab [MLab](https://mlab.com). We will cover both options below.__
+__NOTE: In order to run the app, you need a Local MongoDB installation or a Remote Database (which is a quicker solution), for example at [MLab](https://mlab.com). Also you will need a Auth Github App registered for the "latest repositories functionality". We will cover all that below.__
+
+## Github Auth App
+
+Create a new [Github Auth App](https://github.com/settings/applications/new)
+
+Open _/client/src/components/profile/ProfileGithub.js_ and replace "clientId" and "clientSecret" with your own. 
+
+```javascript
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+class ProfileGithub extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        clientId: '',
+        clientSecret: '',
+        count: 5,
+        sort: 'created: asc',
+        repos: []
+        };
+    }
+    ...
+```
+
+Also you must go in the newly created app's [dashboard](https://github.com/settings/developers) and replace "Homepage URL" and "Authorization callback URL" either with _http://localhost:3000_ if you are going to run the app locally, or with you heroku link if you are going to deploy the app to heroku. 
+
+![git](img-samples/git.png?raw=true)
 
 ## Available Scripts
 
@@ -95,7 +111,7 @@ Last step is to create a user for the database.
 ![mongo-3](img-samples/mongo-3.png?raw=true)
 
 After creating a user, copy the "To connect using a driver via the standard MongoDB URI" link (something like this, 
-_mongodb://<dbuser>:<dbpassword>@ds139435.mlab.com:39435/network_), replacing "<dbuser>" and "<dbpassword>" with your current user's credentials, into /config/keys_dev.js.
+_mongodb://<dbuser>:<dbpassword>@ds139435.mlab.com:39435/network_), replacing "\<dbuser\>" and "\<dbpassword\>" with your current user's credentials, into /config/keys_dev.js.
 
 ![mongo-4](img-samples/mongo-4.png?raw=true)
 
@@ -148,13 +164,13 @@ Log in into your heroku account and create a new application in the heroku dashb
 
 Go to "Deploy" section at the bottom and follow the instructions, in order to upload your app to heroku using heroku-cli. 
 
-At "Settings" section , under the "Config Vars" area, add two global variables for the database, using your MLab mongo uri and your secret (_/config/keys_dev.js):
+At "Settings" section , under the "Config Vars" area, add two global variables for the database, using your MLab mongo uri and your secret (_/config/keys_dev.js_):
 ```
 MONGO_URI : mongodb://pankaryp3:pankaryp3@ds131765.mlab.com:31765/mini-social-app
 SECRET_OR_KEY : secret
 ```
 
-__NOTE: The "heroku-postbuild" script, creates a production build after your code gets uploaded to heroku, so there is no need to worry about this. __
+__NOTE: The "heroku-postbuild" script, creates a production build after your code gets uploaded to heroku, so there is no need to worry about this.__
 
 ## Production Build
 
@@ -170,132 +186,278 @@ npm run build
 
 ## Register-Login
 
+Users can register and login with their email adress.
 
+![register](img-samples/register.png?raw=true)
+
+![login](img-samples/login.png?raw=true)
+
+### Gravatar
+
+The application is using Gravatars for users' profile picture. That's why users are encouraged to use a gravatar email.
 
 ### Authedication
 
-
+Authedication is being achieved with *Json Web Tokens* using [Passport](http://www.passportjs.org/). All users have private access to their profile, where they can see and change information that other users can't. There are also public places that all users can see, like "Developers" and "Chat". 
 
 ### Error Handling
 
+All the forms are being validated for empty spaces, invalid emails, password length, unmatched passwords etc.
 
+![err](img-samples/err.png?raw=true)
 
 ### Password hashing
 
-
+The password are being hashed with a 10 digit salt, using [BCrypt](https://github.com/kelektiv/node.bcrypt.js/).
 
 ## Public Users
 
+All the users that have signed up to the network can be seen publicly under the "Developers" link.
 
+![users](img-samples/users.png?raw=true)
 
 ## Dashboard
 
+Every user has his own dashboard, where he can create a profile, if he doesnt have one, or add/edit his information.
 
+![dash-non](img-samples/dash-non.png?raw=true)
+
+![dash-full](img-samples/dash-full.png?raw=true)
 
 ### Profile
 
+Every user has his private profile section, where he can preview all his info.
 
-
-#### Gravatar
-
-
+![prof-1](img-samples/prof-1.png?raw=true)
 
 #### Github API
 
+If the user add his github username, the application fetches his latest repositories from github.
 
+![prof-2](img-samples/prof-2.png?raw=true)
 
 ### Edit Profile
 
+The user can edit his profile's information.
 
+![ed-prof-1](img-samples/ed-prof-1.png?raw=true)
+
+Social links section is optional.
+
+![ed-prof-2](img-samples/ed-prof-2.png?raw=true)
 
 ### Add Experience
 
+Users can add experience.
 
+![exp](img-samples/exp.png?raw=true)
 
 ### Add Education
 
+Users can add education.
 
+![edu](img-samples/edu.png?raw=true)
 
 ## Chat
 
+There is a public chatroom where all users can send messages in real time. 
+
+![pub-chat](img-samples/pub-chat.png?raw=true)
+
+![chat](img-samples/chat.png?raw=true)
 
 
 ## Post Feed
 
+There is a semi-private section where all users can make posts and get likes/comments from other users. 
 
+![post](img-samples/post.png?raw=true)
 
 ### Likes-Comments
 
-
+![comments](img-samples/comments.png?raw=true)
 
 # Technologies Used
 
-
+* Node js
+* Express
+* React
+* Redux 
+* MongoDB - Mongoose
+* Bootstrap
 
 ## Folder Structure
 
+<pre>
+│   .gitignore
+│   license
+│   package-lock.json
+│   package.json
+│   README.md
+│   server.js
+│   ws-server.js
+│
+├───client
+│   │   .gitignore
+│   │   package-lock.json
+│   │   package.json
+│   │
+│   ├───public
+│   │       favicon.ico
+│   │       index.html
+│   │       manifest.json
+│   │
+│   └───src
+│       │   App.css
+│       │   App.js
+│       │   App.test.js
+│       │   index.css
+│       │   index.js
+│       │   registerServiceWorker.js
+│       │   store.js
+│       │
+│       ├───actions
+│       │       authActions.js
+│       │       postActions.js
+│       │       profileActions.js
+│       │       types.js
+│       │
+│       ├───components
+│       │   ├───add-credentials
+│       │   │       AddEducation.js
+│       │   │       AddExperience.js
+│       │   │
+│       │   ├───auth
+│       │   │       Login.js
+│       │   │       Register.js
+│       │   │
+│       │   ├───chat
+│       │   │       Chat.js
+│       │   │       ChatInput.js
+│       │   │       ChatMessage.js
+│       │   │
+│       │   ├───common
+│       │   │       InputGroup.js
+│       │   │       PrivateRoute.js
+│       │   │       SelectListGroup.js
+│       │   │       spinner.gif
+│       │   │       Spinner.js
+│       │   │       TextAreaFieldGroup.js
+│       │   │       TextFieldGroup.js
+│       │   │
+│       │   ├───create-profile
+│       │   │       CreateProfile.js
+│       │   │
+│       │   ├───dashboard
+│       │   │       Dashboard.js
+│       │   │       Education.js
+│       │   │       Experience.js
+│       │   │       ProfileActions.js
+│       │   │
+│       │   ├───edit-profile
+│       │   │       EditProfile.js
+│       │   │
+│       │   ├───layout
+│       │   │       Footer.js
+│       │   │       Landing.js
+│       │   │       Navbar.js
+│       │   │
+│       │   ├───not-found
+│       │   │       NotFound.js
+│       │   │
+│       │   ├───post
+│       │   │       CommentFeed.js
+│       │   │       CommentForm.js
+│       │   │       CommentItem.js
+│       │   │       Post.js
+│       │   │       PostFeed.js
+│       │   │       PostForm.js
+│       │   │       PostItem.js
+│       │   │       Posts.js
+│       │   │
+│       │   └───profile
+│       │           Profile.js
+│       │           ProfileAbout.js
+│       │           ProfileCreds.js
+│       │           ProfileGithub.js
+│       │           ProfileHeader.js
+│       │           ProfileItem.js
+│       │           Profiles.js
+│       │
+│       ├───img
+│       │       octo.jpg
+│       │       prof.png
+│       │
+│       ├───reducers
+│       │       authReducer.js
+│       │       errorReducer.js
+│       │       index.js
+│       │       postReducer.js
+│       │       profileReducer.js
+│       │
+│       ├───utils
+│       │       setAuthToken.js
+│       │
+│       └───validation
+│               is-empty.js
+│
+├───config
+│       keys.js
+│       keys_dev.js
+│       keys_prod.js
+│       passport.js
+│
+├───img-samples
+│       chat.png
+│       comments.png
+│       dash-full.png
+│       dash-non.png
+│       ed-prof-1.png
+│       ed-prof-2.png
+│       edu.png
+│       err.png
+│       exp.png
+│       git.png
+│       landing.png
+│       login.png
+│       mongo-1.png
+│       mongo-2.png
+│       mongo-3.png
+│       mongo-4.png
+│       post.png
+│       prof-1.png
+│       prof-2.png
+│       pub-chat.png
+│       register.png
+│       users.png
+│
+├───models
+│       Post.js
+│       Profile.js
+│       User.js
+│
+├───routes
+│   └───api
+│           posts.js
+│           profile.js
+│           users.js
+│
+└───validation
+        education.js
+        experience.js
+        is-empty.js
+        login.js
+        post.js
+        profile.js
+        register.js
+</pre>
 
+# Contributing
 
-## Back End
-
-
-
-### Config
-
-
-
-### REST Api
-
-
-
-### Mongoose Models
-
-
-
-### Authedication - JWT
-
-
-
-### Validation
-
-
-
-### Hashing
-
-
-
-### Websockets
-
-
-
-## Front End
-
-
-
-### Bootstrap
-
-
-
-### React
-
-
-
-#### Components
-
-
-
-#### State Management - Redux
-
-
-
-### Custom Styles
-
-
-
-# Contribution
-
-
+If something is unclear, wrong, or needs to be refactored, please let me know. Pull requests are always welcome. Please open an issue before submitting a pull request. 
 
 # License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 
