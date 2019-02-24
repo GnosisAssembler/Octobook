@@ -53,7 +53,12 @@ cd Mini-social-app
 npm install && npm run client-install
 ```
 
-__NOTE: In order to run the app, you need a Local MongoDB installation or a Remote Database (which is a quicker solution), for example at [MLab](https://mlab.com). Also you will need an Auth Github App registered for the "latest repositories functionality". We will cover all that below.__
+Start the development server
+```bash
+npm run dev
+```
+
+__NOTE: In order to run the app with your own server and github auth app, you need a Local MongoDB installation or a Remote Database (which is a quicker solution), for example at [MLab](https://mlab.com). Also you will need an Auth Github App registered for the "latest repositories functionality". We will cover all that below.__
 
 ## Github Auth App
 
