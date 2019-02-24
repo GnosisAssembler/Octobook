@@ -41,7 +41,7 @@ This repository is an attempt to make a full stack application with an interacti
 
 # Getting Started
 
-You can view a live demo of the application on [Heroku here](https://octobook.herokuapp.com/)!
+You can view a live demo of the application on [Heroku here](https://octobook-social-app.herokuapp.com), but without the live chatting system (unfortunately there were some problems with the deployment of the websocket server. If you want the live chat, you'll need to run the application locally)! 
 
 If you want to set up your own development enviroment, just clone this repository:
 ```bash
