@@ -117,7 +117,7 @@ _mongodb://<dbuser>:<dbpassword>@ds139435.mlab.com:39435/network_), replacing __
 
 ```javascript
 module.exports = {
-    //mongoURI: 'mongodb://localhost/mernsocialapp',
+    //mongoURI: 'mongodb://localhost/octobooksocialapp',
     mongoURI: 'mongodb://testuser:testpass@ds139435.mlab.com:39435/network',
     secretOrKey: 'secret'
 };
@@ -144,7 +144,7 @@ Create a new database
 use minisocialapp
 ```
 
-Go to _/config/keys_dev.js_, comment out __mongoURI__ and __secretOrKey__ and uncomment the first line , replacing __"mern social app"__ with the name of your own database.
+Go to _/config/keys_dev.js_, comment out __mongoURI__ and __secretOrKey__ and uncomment the first line , replacing __"octobook social app"__ with the name of your own database.
 ```javascript
 module.exports = {
     mongoURI: 'mongodb://localhost/minisocialapp',
