@@ -2,7 +2,7 @@
 
 ![repo size](https://img.shields.io/github/repo-size/pankaryp/Mini-social-app.svg) ![node 10.15.1](https://img.shields.io/badge/node-10.15.1-brightgreen.svg)    
 
-> A mini social app for developers 💻
+> A mini social app for developers 💻.
 
 ### Table of Contents
 
