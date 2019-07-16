@@ -1,5 +1,5 @@
 {
-  "name": "mini-social-app",
+  "name": "OctoBook",
   "version": "1.0.0",
   "description": "A mini social network using React and Node",
   "main": "server.js",

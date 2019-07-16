@@ -1,8 +1,10 @@
 # OctoBook - Mini Social App
 
-![repo size](https://img.shields.io/github/repo-size/pankaryp/Mini-social-app.svg) ![node 10.15.1](https://img.shields.io/badge/node-10.15.1-brightgreen.svg)    
+![status completed](https://img.shields.io/badge/status-completed-brightgreen.svg?style=flat-square)
 
-> A mini social app for developers 💻.
+![repo size](https://img.shields.io/github/repo-size/pankaryp/Mini-social-app.svg?style=flat-square) ![node 10.15.1](https://img.shields.io/badge/node-10.15.1-brightgreen.svg?style=flat-square)    
+
+> 🐙 💬 A mini social app for developers, using Node-Express-React-Redux-MongoDb.
 
 ### Table of Contents
 
